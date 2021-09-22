@@ -25,11 +25,14 @@ class Formation extends Web
     function home()
     {
         $formations = [];
+        $competences =[];
+
         if (SessionHelpers::isLogin()) {
             // Récupération des vidéos par le modèle
             $formations = $this->formationModel->getVideos();
         } else {
             $formations = $this->formationModel->getPublicVideos();
+            $competences = $this->formationModel->competencesFormation($competence["IDCOMPETENCE"]);
         }
         $this->header();
         include("./views/formation/filter.php");
@@ -58,6 +61,7 @@ class Formation extends Web
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
         $this->header();
+        var_dump($competences);
         include("./views/formation/tv.php");
         $this->footer();
     }
