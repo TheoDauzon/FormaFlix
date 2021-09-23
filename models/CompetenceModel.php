@@ -10,4 +10,9 @@ class CompetenceModel extends SQL
     {
         parent::__construct("competence", "IDCOMPETENCE");
     }
+    function getCompetences()
+    {
+        $stmt = $this->pdo->query("SELECT * FROM competence");
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

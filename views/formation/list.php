@@ -1,6 +1,13 @@
 <div class="container">
     <div class="row pt-5">
         <?php
+
+        if(isset($_POST['filterCompet'])){
+        $selectComp=$_POST["filterCompet"];
+        $reqSelect="";
+        }
+
+
         foreach ($formations as $formation) {
             ?>
 

@@ -14,10 +14,12 @@ use utils\SessionHelpers;
 class Formation extends Web
 {
     private $formationModel;
+    private $competenceModel;
 
     function __construct()
     {
         $this->formationModel = new FormationModel();
+        $this->competenceModel= new CompetenceModel();
     }
 
 
@@ -30,15 +32,14 @@ class Formation extends Web
         if (SessionHelpers::isLogin()) {
             // Récupération des vidéos par le modèle
             $formations = $this->formationModel->getVideos();
-            $competences = $this->formationModel->competencesFormation($formations["IDFORMATION"]);
-
+            $competences = $this->competenceModel->getCompetences();
         } else {
             $formations = $this->formationModel->getPublicVideos();
-            $competences = $this->formationModel->competencesFormation($formations["IDFORMATION"]);
+            $competences = $this->competenceModel->getCompetences();
+
 
         }
         $this->header();
-        var_dump($competences);
         include("./views/formation/filter.php");
         include("./views/formation/list.php");
         $this->footer();
@@ -65,7 +66,6 @@ class Formation extends Web
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
         $this->header();
-        var_dump($competences);
         include("./views/formation/tv.php");
         $this->footer();
     }
