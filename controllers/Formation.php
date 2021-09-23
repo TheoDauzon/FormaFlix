@@ -25,16 +25,20 @@ class Formation extends Web
     function home()
     {
         $formations = [];
-        $competences =[];
+        $competences = [];
 
         if (SessionHelpers::isLogin()) {
             // Récupération des vidéos par le modèle
             $formations = $this->formationModel->getVideos();
+            $competences = $this->formationModel->competencesFormation($formations["IDFORMATION"]);
+
         } else {
             $formations = $this->formationModel->getPublicVideos();
-            $competences = $this->formationModel->competencesFormation($competence["IDCOMPETENCE"]);
+            $competences = $this->formationModel->competencesFormation($formations["IDFORMATION"]);
+
         }
         $this->header();
+        var_dump($competences);
         include("./views/formation/filter.php");
         include("./views/formation/list.php");
         $this->footer();
