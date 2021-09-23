@@ -33,6 +33,7 @@ class Formation extends Web
             // Récupération des vidéos par le modèle
             $formations = $this->formationModel->getVideos();
             $competences = $this->competenceModel->getCompetences();
+
         } else {
             $formations = $this->formationModel->getPublicVideos();
             $competences = $this->competenceModel->getCompetences();
