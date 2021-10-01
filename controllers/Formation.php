@@ -27,7 +27,7 @@ class Formation extends Web
     {
         if (SessionHelpers::isLogin()) {
             if ($filterCompet == "") {
-                $formations = $this->formationModel->getAll();
+                $formations = $this->formationModel->getPublicVideos();
                 $competences = $this->competenceModel->getCompetences();
             } else {
                 // Récupération des vidéos par le modèle
