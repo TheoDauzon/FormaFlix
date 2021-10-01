@@ -39,7 +39,7 @@ class Account extends Web
     function logout()
     {
         SessionHelpers::logout();
-        $this->redirect("/login");
+        $this->redirect("./");
     }
 
     // Affiche l'utilisateur actuellement connecté.
