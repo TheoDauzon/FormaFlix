@@ -19,34 +19,28 @@ class Formation extends Web
     function __construct()
     {
         $this->formationModel = new FormationModel();
-        $this->competenceModel= new CompetenceModel();
+        $this->competenceModel = new CompetenceModel();
     }
 
     // Affichage de la page d'accueil avec en fonction si connecté ou non une liste plus complète.
-    function home($filterCompet="")
+    function home($filterCompet = "")
     {
         if (SessionHelpers::isLogin()) {
-            if($filterCompet=="")
-            {
+            if ($filterCompet == "") {
                 $formations = $this->formationModel->getAll();
                 $competences = $this->competenceModel->getCompetences();
-            }
-            else
-            {
-            // Récupération des vidéos par le modèle
-            $formations = $this->formationModel->getPublicVideosComp($filterCompet);
-            $competences = $this->competenceModel->getCompetences();
+            } else {
+                // Récupération des vidéos par le modèle
+                $formations = $this->formationModel->getPublicVideosComp($filterCompet);
+                $competences = $this->competenceModel->getCompetences();
             }
         } else {
-            if($filterCompet=="")
-            {
-                $formations = $this->formationModel->getAll();
+            if ($filterCompet == "") {
+                $formations = $this->formationModel->getVideos();
                 $competences = $this->competenceModel->getCompetences();
-            }
-            else
-            {
-            $formations = $this->formationModel->getVideosComp($filterCompet);
-            $competences = $this->competenceModel->getCompetences();
+            } else {
+                $formations = $this->formationModel->getVideosComp($filterCompet);
+                $competences = $this->competenceModel->getCompetences();
             }
         }
         $this->header();
@@ -68,7 +62,7 @@ class Formation extends Web
         }
 
         // Les vidéos non public ne doivent pas être visible si non connecté
-        if($video['VISIBILITEPUBLIC'] == 0 && !SessionHelpers::isLogin()){
+        if ($video['VISIBILITEPUBLIC'] == 0 && !SessionHelpers::isLogin()) {
             $this->redirect("./formations");
         }
 

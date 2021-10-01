@@ -13,13 +13,13 @@ class FormationModel extends SQL
 
     function getPublicVideos()
     {
-        $stmt = $this->pdo->query("SELECT * FROM formation where (VISIBILITEPUBLIC = 1) && (DATEVISIBILITE<= CURRENT_DATE)");
+        $stmt = $this->pdo->query("SELECT * FROM formation where (VISIBILITEPUBLIC = 1) AND (DATEVISIBILITE<= CURRENT_DATE)");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     function getPublicVideosComp($competenceID)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM formation INNER JOIN developper d ON formation.IDFORMATION = d.IDFORMATION where (VISIBILITEPUBLIC = 1) && (DATEVISIBILITE<= CURRENT_DATE) AND d.IDCOMPETENCE = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM formation INNER JOIN developper d ON formation.IDFORMATION = d.IDFORMATION where (VISIBILITEPUBLIC = 1) AND (DATEVISIBILITE<= CURRENT_DATE) AND d.IDCOMPETENCE = ?");
         $stmt->execute([$competenceID]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -33,7 +33,8 @@ class FormationModel extends SQL
 
     function getVideos()
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM formation where (DATEVISIBILITE<= CURRENT_DATE)");
+        $stmt = $this->pdo->prepare("SELECT * FROM formation where DATEVISIBILITE <= current_date");
+        $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
