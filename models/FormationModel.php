@@ -55,4 +55,9 @@ class FormationModel extends SQL
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function getCommentaireById(){
+        $stmt = $this->pdo->prepare("SELECT * FROM commentaires ");
+        $stmt->execute([$competenceID]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
