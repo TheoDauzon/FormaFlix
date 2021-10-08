@@ -27,20 +27,21 @@ class AccountModel extends SQL
         }
     }
 
-    public function register($nom,$prenom,$email,$mdp){
+    public function register($nom, $prenom, $mail, $mdp)
+    {
 
         // -> À faire, récupération des paramètres & création du mot de passe
         // -> Ajouter en base de données l'utilisateur.
-        // password_hash($password, PASSWORD_BCRYPT, ['cost' => 12])
-        $stmt = $this->pdo->prepare("INSERT INTO (prenom, mail, age, sexe, pays) VALUES (:prenom, :mail, :age, :sexe, :pays)");
-        $stmt->bindParam(':prenom',$prenom);
-        $stmt->bindParam(':mail',$mail);
-        $stmt->bindParam(':age',$age);
-        $stmt->bindParam(':sexe',$sexe);
-        $stmt->bindParam(':pays',$pays);
+        $mdp = password_hash($mdp, PASSWORD_BCRYPT, ['cost' => 12]);
+        $stmt = $this->pdo->prepare("INSERT INTO inscrit VALUES (NULL, :nom, :prenom, :mail, :mdp, NULL)");
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':mail', $mail);
+        $stmt->bindParam(':mdp', $mdp);
         $stmt->execute();
-        //On renvoie l'utilisateur vers la page de remerciement
-        header("Location:form-merci.html");
 
+        //On renvoie l'utilisateur vers la page de remerciement
+        SessionHelpers::login(array("username" => "{$inscrit["NOMINSCRIT"]} {$inscrit["PRENOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"]));
+        return true;
     }
 }

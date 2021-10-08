@@ -12,7 +12,7 @@
                                 <?php
                             }
                             ?>
-                            <form method="POST" action="./register">
+                            <form method="POST" action="./register"">
                                 <h1 class="h3 mb-3 fw-normal text-light">Inscription</h1>
 
                                 <div class="form-floating">
@@ -26,14 +26,26 @@
                                 </div>
 
                                 <div class="form-floating mt-2">
-                                    <input name="login" type="email" class="form-control" id="floatingInput" placeholder="Email">
+                                    <input name="mail" type="email" class="form-control" id="floatingInput" placeholder="Email">
                                     <label for="floatingInput">Adresse email</label>
                                 </div>
 
                                 <div class="form-floating mt-2">
-                                    <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
+                                    <input name="mdp" type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
                                     <label for="floatingPassword">Mot de passe</label>
-                                </div>
+                                </div><br>
+
+                                <select name="filterDiplome" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                    <option value="">Dernier diplôme obtenu</option>
+                                    <?php
+                                    foreach ($diplomes as $diplome) {
+                                        ?>
+                                        <option value=<?= $diplome["IDDIPLOME"] ?>><?= $diplome["LIBELLEDIPLOME"] ?></option>
+
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
 
                                 <button class="w-100 mt-5 btn btn-lg btn-primary" type="submit">S'inscrire</button>
                             </form>
