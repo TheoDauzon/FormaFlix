@@ -12,7 +12,7 @@
                                 <?php
                             }
                             ?>
-                            <form method="POST" action="./register"">
+                            <form method="POST" action="./register">
                                 <h1 class="h3 mb-3 fw-normal text-light">Inscription</h1>
 
                                 <div class="form-floating">
