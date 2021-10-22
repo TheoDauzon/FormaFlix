@@ -25,7 +25,7 @@ class Account extends Web
             if ($this->accountModel->login($_POST["login"], $_POST["password"])) {
                 $this->redirect("me");
             } else {
-                // Connexion impossible avec les identifiants fourni.
+                // Connexion impossible avec les identifiants fournis
                 $error = true;
             }
         }

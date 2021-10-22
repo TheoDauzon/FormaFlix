@@ -1,5 +1,4 @@
 <?php
-
 namespace models;
 
 use models\base\SQL;

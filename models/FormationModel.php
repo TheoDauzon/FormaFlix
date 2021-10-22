@@ -55,9 +55,15 @@ class FormationModel extends SQL
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-    public function getCommentaireById(){
-        $stmt = $this->pdo->prepare("SELECT * FROM commentaires ");
-        $stmt->execute([$competenceID]);
+    public function getCommentaireById($id){
+        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ?");
+        $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function getNoteCommentaire($idform, $idcomm){
+        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ? AND idcommentaire = ?");
+        $stmt->execute([$idform, $idcomm]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }
