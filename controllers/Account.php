@@ -17,7 +17,7 @@ class Account extends Web
         $this->accountModel = new AccountModel();
     }
 
-    // Méthode de connexion. Prise des paramètre en POST
+    // Méthode de connexion. Prise des paramètres en POST
     function login()
     {
         $error = false;
