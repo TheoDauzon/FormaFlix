@@ -36,25 +36,20 @@
         <div class="card card-dark mt-5 p-3">
             <div class="row g-0 text-light">
                 <h6>Editer un commentaire</h6>
-                <div class="col-md-2" style="text-align: center;">
+                <div class="col-md-1" style="text-align: center;">
                     <h6>Note</h6>
+                    <?php  for ($i = 1; $i <= 5; $i++) {
+                    ?>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                               value="option1">
-                        <label class="form-check-label" for="inlineRadio1">1</label>
+                        <input class="form-check-input" type="radio" name="radioCom<?php echo $i ?>" id="radioCom<?php echo $i ?>"
+                               value="radioCom">
+                        <label class="form-check-label" for="radioCom"> <?php echo $i ?></label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                               value="option2">
-                        <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                               value="option3">
-                        <label class="form-check-label" for="inlineRadio3">3 </label>
-                    </div>
+                    <?php }
+                    ?>
+
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <label for="exampleFormControlTextarea1" class="form-label">Contenu</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     <div id="emailHelp" class="form-text">Doit contenir au moins 10 caractères</div>
