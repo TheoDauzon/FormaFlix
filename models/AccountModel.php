@@ -14,16 +14,29 @@ class AccountModel extends SQL
 
     public function login($username, $password)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT=? LIMIT 1");
-        $stmt->execute([$username]);
+        $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT = :mail LIMIT 1");
+        $stmt->bindParam(':mail', $username);
+        $stmt->execute();
         $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if ($inscrit !== false && password_verify($password, $inscrit['MOTPASSEINSCRIT'])) {
-            SessionHelpers::login(array("username" => "{$inscrit["NOMINSCRIT"]} {$inscrit["PRENOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"]));
+            SessionHelpers::login(array("username" => "{$inscrit["PRENOMINSCRIT"]} {$inscrit["NOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"]));
             return true;
         } else {
             SessionHelpers::logout();
             return false;
+        }
+    }
+
+    // Requête qui vérifie que chaque utilisateur est différent (par son mail)
+    public function verifMail($mail)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT = :mail");
+        $stmt->bindParam(':mail', $mail);
+        $stmt->execute();
+        $verif =$stmt->fetch(\PDO::FETCH_ASSOC);
+        if (empty($verif)) {
+            return true;
         }
     }
 
@@ -39,10 +52,9 @@ class AccountModel extends SQL
         $stmt->bindParam(':mail', $mail);
         $stmt->bindParam(':mdp', $mdp);
         $stmt->bindParam(':iddiplome', $iddiplome);
-        $stmt->execute();
+        if ($stmt->execute()) {
+            return true;
+        }
 
-        //On renvoie l'utilisateur vers la page de remerciement
-        SessionHelpers::login(array("username" => "{$inscrit["NOMINSCRIT"]} {$inscrit["PRENOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"]));
-        return true;
     }
 }

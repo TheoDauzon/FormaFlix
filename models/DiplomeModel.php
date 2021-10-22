@@ -16,4 +16,10 @@ class DiplomeModel extends SQL
         $stmt = $this->pdo->query("SELECT * FROM diplome");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    function modifDiplome($iddiplome)
+    {
+        $stmt = $this->pdo->query("SELECT * FROM diplome");
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
