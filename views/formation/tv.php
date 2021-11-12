@@ -34,27 +34,32 @@
         </div>
 
         <div class="card card-dark mt-5 p-3">
-            <div class="row g-0 text-light">
-                <h6>Editer un commentaire</h6>
-                <div class="col-md-1" style="text-align: center;">
-                    <h6>Note</h6>
-                    <?php  for ($i = 1; $i <= 5; $i++) {
-                    ?>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioCom<?php echo $i ?>" id="radioCom<?php echo $i ?>"
-                               value="radioCom">
-                        <label class="form-check-label" for="radioCom"> <?php echo $i ?></label>
-                    </div>
-                    <?php }
-                    ?>
+            <form method="POST" action="formations">
+                <div class="row g-0 text-light">
+                    <h6>Editer un commentaire</h6>
+                    <div class="col-md-1" style="text-align: center;">
 
+                        <h6>Note</h6>
+                        <?php for ($i = 1; $i <= 5; $i++) {
+                            ?>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioCom"
+                                       id="radioCom<?php echo $i ?>"
+                                       value="radioCom">
+                                <label class="form-check-label" for="radioCom"> <?php echo $i ?></label>
+                            </div>
+                        <?php }
+                        ?>
+
+                    </div>
+                    <div class="col-md-10">
+                        <label for="contentcomm" class="form-label">Contenu</label>
+                        <textarea class="form-control" id="contentcomm" rows="3"></textarea>
+                        <div id="commhelp" class="form-text">Doit contenir au moins 10 caractères</div>
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    <label for="exampleFormControlTextarea1" class="form-label">Contenu</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <div id="emailHelp" class="form-text">Doit contenir au moins 10 caractères</div>
-                </div>
-            </div>
+                <input type="submit" name="validComm" class="btn btn-primary" value="VALIDER">
+            </form>
         </div>
 
         <div class="card card-dark mt-5 p-3">

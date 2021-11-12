@@ -72,6 +72,19 @@ class Formation extends Web
         //commentaires associées à la vidéo
         $commentaires = $this-> formationModel->getCommentaireById($video["IDFORMATION"]);
 
+        function insCommentaire()
+        {
+            $diplomes = $this->commentaireModel->getNoteCommentaire();
+            if (isset($_POST['libcomm']) && strlen($_POST['libcomm']) <= 400 && isset($_POST['radioCom'])) {
+                $libcomm = strip_tags($_POST["libcomm"]);
+
+                var_dump($_POST['radioCom']);
+                if ($this->commentaireModel->insCommentaire($libcomm, ($_POST['radioCom']), $idformation, $idinscrit)) {
+                    $this->redirect("me");
+                }
+            }
+        }
+
         $this->header();
         include("./views/formation/tv.php");
         $this->footer();

@@ -3,10 +3,6 @@
         <?php
             foreach ($formations as $formation) {
 
-                //si la competence selectionnée est égale à ['idformation'] : afficher $formation['image']
-                //if ($selectComp==$formation['IDFORMATION']){
-
-
                 ?>
 
                 <div class="col-sm-12 p-3">
