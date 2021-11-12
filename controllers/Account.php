@@ -79,10 +79,23 @@ class Account extends Web
 // Affiche l'utilisateur actuellement connecté.
     function me()
     {
-        $diplomes = $this->diplomeModel->getDiplomes();
-        $modifDiplome = $this->diplomeModel->modifDiplome($iddiplome);
         $this->header();
         include("views/account/me.php");
+        $this->footer();
+    }
+
+// Affiche l'utilisateur actuellement connecté.
+    function gestionProfil()
+    {
+        $this->header();
+        include("views/account/gestionProfil.php");
+        $this->footer();
+    }
+
+    function gestionCommentaire()
+    {
+        $this->header();
+        include("views/account/gestionCommentaire.php");
         $this->footer();
     }
 }

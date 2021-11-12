@@ -25,6 +25,8 @@ class Web
 
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
+            Route::Add('/gestionProfil', [$account, 'gestionProfil']);
+            Route::Add('/gestionCommentaire', [$account, 'gestionCommentaire']);
             Route::Add('/logout', [$account, 'logout']);
         }
     }
