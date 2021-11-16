@@ -13,7 +13,7 @@ class CommentaireModel extends SQL
 
     public function insCommentaire($libcomm, $idnote, $idformation, $idinscrit)
     {
-        // -> Ajouter en base de données la note et le commentaire
+        // -> Insérer dans la bdd la note et le commentaire
         $stmt = $this->pdo->prepare("INSERT INTO commentaire VALUES (NULL, :libcomm, :idnote, 1, :idformation, :idinscrit)");
         $stmt->bindParam(':libcomm', $libcomm);
         $stmt->bindParam(':idnote', $idnote);
@@ -25,8 +25,13 @@ class CommentaireModel extends SQL
         }
     }
     public function getNoteCommentaire($idform, $idcomm){
-        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ? AND idcommentaire = ?");
+        $stmt = $this->pdo->prepare("SELECT IDCOMMENTAIRE, LIBELLECOM, NOTECOM, STATUTCOM, commentaire.IDINSCRIT, commentaire.IDFORMATION, LIBELLE, NOMINSCRIT, PRENOMINSCRIT FROM commentaire RIGHT JOIN formation f ON commentaire.IDFORMATION=f.IDFORMATION RIGHT JOIN inscrit i ON commentaire.IDINSCRIT=i.IDINSCRIT WHERE idformation = ? AND idcommentaire = ?");
         $stmt->execute([$idform, $idcomm]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function getCommentaireById($id){
+        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ?");
+        $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

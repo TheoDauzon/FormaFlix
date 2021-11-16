@@ -34,12 +34,12 @@
         </div>
 
         <div class="card card-dark mt-5 p-3">
-            <form method="POST" action="formations">
+            <form method="POST" action="tv?id=test%20x">
                 <div class="row g-0 text-light">
-                    <h6>Editer un commentaire</h6>
+                    <h6>EDITER UN COMMENTAIRE</h6>
                     <div class="col-md-1" style="text-align: center;">
 
-                        <h6>Note</h6>
+                        <h7>Note</h7>
                         <?php for ($i = 1; $i <= 5; $i++) {
                             ?>
                             <div class="form-check form-check-inline">
@@ -50,8 +50,8 @@
                             </div>
                         <?php }
                         ?>
-
                     </div>
+
                     <div class="col-md-10">
                         <label for="contentcomm" class="form-label">Contenu</label>
                         <textarea class="form-control" id="contentcomm" rows="3"></textarea>

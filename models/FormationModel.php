@@ -38,7 +38,6 @@ class FormationModel extends SQL
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-
     function getByVideoId($videoId)
     {
         // Utilisation d'une query a la place d'un simple getOne car la requête
@@ -53,16 +52,6 @@ class FormationModel extends SQL
     {
         $stmt = $this->pdo->prepare("SELECT * FROM competence LEFT JOIN developper d on competence.IDCOMPETENCE = d.IDCOMPETENCE WHERE d.IDFORMATION = ?");
         $stmt->execute([$id]);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
-    public function getCommentaireById($id){
-        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
-    public function getNoteCommentaire($idform, $idcomm){
-        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ? AND idcommentaire = ?");
-        $stmt->execute([$idform, $idcomm]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
