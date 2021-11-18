@@ -58,7 +58,7 @@
                         <div id="commhelp" class="form-text">Doit contenir au moins 10 caractères</div>
                     </div>
                 </div>
-                <input type="submit" name="validComm" class="btn btn-primary" value="VALIDER">
+                <input type="submit" name="validInsComm" class="btn btn-primary" value="VALIDER">
             </form>
         </div>
 

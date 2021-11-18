@@ -1,9 +1,10 @@
 <div class="container">
     <div class="row pt-5">
         <?php
-            foreach ($formations as $formation) {
+        foreach ($formations as $formation) {
 
                 ?>
+
 
                 <div class="col-sm-12 p-3">
                     <div class="card card-hover">

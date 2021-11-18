@@ -74,8 +74,7 @@ class Formation extends Web
 
         //commentaires associées à la vidéo
         $commentaires = $this-> commentaireModel->getCommentaireById($video["IDFORMATION"]);
-
-
+        var_dump($commentaires); var_dump($video);
 
         $this->header();
         include("./views/formation/tv.php");
