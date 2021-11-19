@@ -11,16 +11,28 @@
                                 <div class="alert alert-danger">Identifiant de connexion invalide</div>
                                 <?php
                             }
+                            if (isset($succes) && $succes === true) {
+                                ?>
+                                <div class="alert alert-success">Modifications enregistrées</div>
+                                <?php
+                            }
+                            if (isset($mauvaisMdp) && $mauvaisMdp === true) {
+                                ?>
+                                <div class="alert alert-danger">Mot de passe incorrect ! Veuillez vous reconnectez !</div>
+                                <?php
+                            }
                             ?>
                             <form method="POST" action="./login">
                                 <h1 class="h3 mb-3 fw-normal text-light">Connexion</h1>
 
                                 <div class="form-floating">
-                                    <input name="login" type="email" class="form-control" id="floatingInput" placeholder="Email">
+                                    <input name="login" type="email" class="form-control" id="floatingInput"
+                                           placeholder="Email">
                                     <label for="floatingInput">Adresse email</label>
                                 </div>
                                 <div class="form-floating mt-2">
-                                    <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
+                                    <input name="password" type="password" class="form-control" id="floatingPassword"
+                                           placeholder="Mot de passe">
                                     <label for="floatingPassword">Mot de passe</label>
                                 </div>
 

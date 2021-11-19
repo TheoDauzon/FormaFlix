@@ -5,7 +5,6 @@ namespace controllers;
 use controllers\base\Web;
 use models\CompetenceModel;
 use models\FormationModel;
-use models\CommentaireModel;
 use utils\SessionHelpers;
 
 /**
@@ -16,13 +15,11 @@ class Formation extends Web
 {
     private $formationModel;
     private $competenceModel;
-    private $commentaireModel;
 
     function __construct()
     {
         $this->formationModel = new FormationModel();
         $this->competenceModel = new CompetenceModel();
-        $this->commentaireModel = new CommentaireModel();
     }
 
     // Affichage de la page d'accueil avec en fonction si connecté ou non une liste plus complète.
@@ -71,26 +68,6 @@ class Formation extends Web
 
         // Compétences associées à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
-
-        //commentaires associées à la vidéo
-        $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
-
-        $idForm = $video['IDFORMATION'];
-        var_dump($idForm);
-        $idInscrit = $_SESSION['USER']['id'];
-        $idStatut = 1;
-
-        if (isset($_POST['validInsComm'])) {
-            if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
-                $idnote = $_POST['radioCom'];
-                $libcomm = strip_tags($_POST["libcomm"]);
-
-                if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
-                    $idVideoUrl =$video['IDENTIFIANTVIDEO'];
-                    $this->redirect("tv?id=$idVideoUrl");
-                }
-            }
-        }
 
         $this->header();
         include("./views/formation/tv.php");
