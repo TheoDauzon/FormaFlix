@@ -80,6 +80,7 @@ class Account extends Web
                     SessionHelpers::logout();
                     $this->redirect("login");
                     $succes = true;
+                    //$_SESSION['succes']= true;
                 }
             } else {
                 // Connexion impossible avec les identifiants fourni.
