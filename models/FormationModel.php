@@ -38,6 +38,7 @@ class FormationModel extends SQL
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+
     function getByVideoId($videoId)
     {
         // Utilisation d'une query a la place d'un simple getOne car la requête
@@ -54,5 +55,4 @@ class FormationModel extends SQL
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
 }

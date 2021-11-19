@@ -4,8 +4,6 @@
         foreach ($formations as $formation) {
 
                 ?>
-
-
                 <div class="col-sm-12 p-3">
                     <div class="card card-hover">
                         <div class="card-body d-flex">

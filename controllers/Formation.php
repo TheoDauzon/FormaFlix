@@ -34,10 +34,14 @@ class Formation extends Web
                 $competences = $this->competenceModel->getCompetences();
             } else {
                 // Récupération des vidéos par le modèle
-                $formations = $this->formationModel->getVideosComp($filterCompet);
+                $formations = $this->formationModel->getPublicVideosComp($filterCompet);
                 $competences = $this->competenceModel->getCompetences();
             }
         } else {
+            if ($filterCompet == "") {
+                $formations = $this->formationModel->getPublicVideos();
+                $competences = $this->competenceModel->getCompetences();
+            } else {
             if ($filterCompet == "") {
                 $formations = $this->formationModel->getPublicVideos();
                 $competences = $this->competenceModel->getCompetences();
