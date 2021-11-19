@@ -2,9 +2,6 @@
 namespace models;
 
 use models\base\SQL;
-use utils\SessionHelpers;
-
-
 
 class CommentaireModel extends SQL
 {
@@ -19,20 +16,15 @@ class CommentaireModel extends SQL
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function getNoteCommentaire($idform, $idcomm){
-        $stmt = $this->pdo->prepare("SELECT IDCOMMENTAIRE, LIBELLECOM, NOTECOM, STATUTCOM, commentaire.IDINSCRIT, commentaire.IDFORMATION, LIBELLE, NOMINSCRIT, PRENOMINSCRIT FROM commentaire RIGHT JOIN formation f ON commentaire.IDFORMATION=f.IDFORMATION RIGHT JOIN inscrit i ON commentaire.IDINSCRIT=i.IDINSCRIT WHERE idformation = ? AND idcommentaire = ?");
-        $stmt->execute([$idform, $idcomm]);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    public function insCommentaire($libcomm, $idnote, $idformation, $idinscrit)
+    public function insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)
     {
         // -> Insérer dans la bdd la note et le commentaire
-        $stmt = $this->pdo->prepare("INSERT INTO commentaire VALUES (NULL, :libcomm, :idnote, 1, :idformation, :idinscrit)");
+        $stmt = $this->pdo->prepare("INSERT INTO commentaire VALUES (NULL, :libcomm, :idnote, :idStatut, :idForm, :idinscrit, CURRENT_DATE )");
         $stmt->bindParam(':libcomm', $libcomm);
         $stmt->bindParam(':idnote', $idnote);
-        $stmt->bindParam(':idformation', $idformation);
-        $stmt->bindParam(':idinscrit', $idinscrit);
+        $stmt->bindParam(':idStatut', $idStatut);
+        $stmt->bindParam(':idForm', $idForm);
+        $stmt->bindParam(':idinscrit', $idInscrit);
 
         if ($stmt->execute()) {
             return true;

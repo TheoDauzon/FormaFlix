@@ -45,7 +45,7 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="radioCom"
                                        id="radioCom<?php echo $i ?>"
-                                       value="radioCom">
+                                       value="<?php echo $i ?>">
                                 <label class="form-check-label" for="radioCom"> <?php echo $i ?></label>
                             </div>
                         <?php }
@@ -54,7 +54,7 @@
 
                     <div class="col-md-10">
                         <label for="contentcomm" class="form-label">Contenu</label>
-                        <textarea class="form-control" id="contentcomm" rows="3"></textarea>
+                        <textarea class="form-control" id="contentcomm" name="libcomm" "rows="3"></textarea>
                         <div id="commhelp" class="form-text">Doit contenir au moins 10 caractères</div>
                     </div>
                 </div>

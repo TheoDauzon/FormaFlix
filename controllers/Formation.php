@@ -73,8 +73,24 @@ class Formation extends Web
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
         //commentaires associées à la vidéo
-        $commentaires = $this-> commentaireModel->getCommentaireById($video["IDFORMATION"]);
-        var_dump($commentaires); var_dump($video);
+        $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
+
+        $idForm = $video['IDFORMATION'];
+        var_dump($idForm);
+        $idInscrit = $_SESSION['USER']['id'];
+        $idStatut = 1;
+
+        if (isset($_POST['validInsComm'])) {
+            if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
+                $idnote = $_POST['radioCom'];
+                $libcomm = strip_tags($_POST["libcomm"]);
+
+                if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
+                    $idVideoUrl =$video['IDENTIFIANTVIDEO'];
+                    $this->redirect("tv?id=$idVideoUrl");
+                }
+            }
+        }
 
         $this->header();
         include("./views/formation/tv.php");
