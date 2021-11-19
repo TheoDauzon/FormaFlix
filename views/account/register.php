@@ -8,7 +8,7 @@
                             <?php
                             if (isset($error) && $error === true) {
                                 ?>
-                                <div class="alert alert-danger">Identifiant de connexion invalide</div>
+                                <div class="alert alert-danger">Erreur dans votre inscription</div>
                                 <?php
                             }
                             ?>
