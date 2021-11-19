@@ -76,7 +76,6 @@ class Formation extends Web
         $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
 
         $idForm = $video['IDFORMATION'];
-        var_dump($idForm);
         $idInscrit = $_SESSION['USER']['id'];
         $idStatut = 1;
 
