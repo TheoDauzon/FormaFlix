@@ -50,15 +50,13 @@ class Account extends Web
             $prenom = strip_tags($_POST["prenom"]);
             $username = strip_tags($_POST["mail"]);
             $password = strip_tags($_POST["mdp"]);
-            var_dump($nom);
-            var_dump($prenom);
-            var_dump($username);
-            var_dump($password);
-            var_dump($_POST['filterDiplome']);
             if ($this->accountModel->verifMail($username)) {
                 if ($this->accountModel->register($nom, $prenom, $username, $password, $_POST['filterDiplome'])) {
                     $this->accountModel->login($username, $password);
                     $this->redirect("me");
+                } else {
+                    // Connexion impossible avec les identifiants fourni.
+                    $error = true;
                 }
             }
         }
@@ -68,6 +66,99 @@ class Account extends Web
         $this->footer();
     }
 
+    function modifInfos()
+    {
+        $succes = false;
+        $mauvaisMdp = false;
+        if (isset($_POST['nomModif']) && strlen($_POST['nomModif']) <= 20 && isset($_POST['prenomModif']) && strlen($_POST['prenomModif']) <= 20 && isset($_POST['mailModif']) && filter_var($_POST['mailModif'], FILTER_VALIDATE_EMAIL) && isset($_POST['mdpModif'])) {
+            $nomModif = strip_tags($_POST["nomModif"]);
+            $prenomModif = strip_tags($_POST["prenomModif"]);
+            $mailModif = strip_tags($_POST["mailModif"]);
+            $mdpModif = strip_tags($_POST["mdpModif"]);
+            $idInscrit = $_SESSION['USER']['id'];
+            if ($this->accountModel->login($mailModif, $mdpModif)) {
+                if ($this->accountModel->modifInfos($nomModif, $prenomModif, $mailModif, $mdpModif, $idInscrit)) {
+                    SessionHelpers::logout();
+                    $this->redirect("login");
+                    $succes = true;
+                }
+            } else {
+                // Connexion impossible avec les identifiants fourni.
+                $this->redirect("login");
+                $mauvaisMdp = true;
+            }
+        }
+        $this->header();
+        include("views/account/gestionProfil.php");
+        $this->footer();
+    }
+
+    function modifDiplome()
+    {
+        $succes = false;
+        $mauvaisMdp = false;
+        if (isset($_POST['mdpModifDiplome']) && isset($_POST['filterModifDiplome'])) {
+            $mailModif = $_SESSION['USER']['email'];
+            $mdpModifDiplome = strip_tags($_POST["mdpModifDiplome"]);
+            $diplomeModif = $_POST['filterModifDiplome'];
+            $idInscrit = $_SESSION['USER']['id'];
+            if ($this->accountModel->login($mailModif, $mdpModifDiplome)) {
+                if ($this->accountModel->modifDiplome($mdpModifDiplome, $diplomeModif, $idInscrit)) {
+                    SessionHelpers::logout();
+                    $this->redirect("login");
+                    $succes = true;
+                }
+            } else {
+                // Connexion impossible avec les identifiants fourni.
+                $this->redirect("login");
+                $mauvaisMdp = true;
+            }
+        }
+        $this->header();
+        include("views/account/gestionProfil.php");
+        $this->footer();
+    }
+
+    function modifMdp()
+    {
+        $succes = false;
+        $mauvaisMdp = false;
+        if (isset($_POST['mdpModifMdp']) && isset($_POST['NouvMdp'])) {
+            $mailModif = $_SESSION['USER']['email'];
+            $mdpModifMdp = strip_tags($_POST['mdpModifMdp']);
+            $NouvMdp = strip_tags($_POST['NouvMdp']);
+            $idInscrit = $_SESSION['USER']['id'];
+            if ($this->accountModel->login($mailModif, $mdpModifMdp)) {
+                if ($this->accountModel->modifMdp($mdpModifMdp, $NouvMdp, $idInscrit)) {
+                    SessionHelpers::logout();
+                    $this->redirect("login");
+                    $succes = true;
+                }
+            } else {
+                // Connexion impossible avec les identifiants fourni.
+                $this->redirect("login");
+                $mauvaisMdp = true;
+            }
+        }
+        $this->header();
+        include("views/account/gestionProfil.php");
+        $this->footer();
+    }
+
+    function gestionProfil()
+    {
+        $diplomes = $this->diplomeModel->getDiplomes();
+        $this->header();
+        include("views/account/gestionProfil.php");
+        $this->footer();
+    }
+
+    function voirCertification()
+    {
+        $this->header();
+        include("views/account/voirCertification.php");
+        $this->footer();
+    }
 
 // Déconnexion et suppression de la SESSION.
     function logout()
@@ -81,14 +172,6 @@ class Account extends Web
     {
         $this->header();
         include("views/account/me.php");
-        $this->footer();
-    }
-
-// Affiche l'utilisateur actuellement connecté.
-    function gestionProfil()
-    {
-        $this->header();
-        include("views/account/gestionProfil.php");
         $this->footer();
     }
 
