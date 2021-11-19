@@ -28,6 +28,8 @@ class Web
             Route::Add('/gestionProfil', [$account, 'gestionProfil']);
             Route::Add('/gestionCommentaire', [$account, 'gestionCommentaire']);
             Route::Add('/logout', [$account, 'logout']);
+            //Route::Add('/tv', [$formation, 'insCommentaire']);
+
         }
     }
 }

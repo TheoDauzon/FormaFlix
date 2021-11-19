@@ -30,7 +30,7 @@ class Account extends Web
             if ($this->accountModel->login($username, $password)) {
                 $this->redirect("me");
             } else {
-                // Connexion impossible avec les identifiants fourni.
+                // Connexion impossible avec les identifiants fournis
                 $error = true;
             }
         }

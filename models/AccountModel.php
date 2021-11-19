@@ -1,5 +1,4 @@
 <?php
-
 namespace models;
 
 use models\base\SQL;
@@ -20,7 +19,7 @@ class AccountModel extends SQL
         $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if ($inscrit !== false && password_verify($password, $inscrit['MOTPASSEINSCRIT'])) {
-            SessionHelpers::login(array("username" => "{$inscrit["PRENOMINSCRIT"]} {$inscrit["NOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"]));
+            SessionHelpers::login(array("username" => "{$inscrit["PRENOMINSCRIT"]} {$inscrit["NOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"], "prenom" => $inscrit["PRENOMINSCRIT"], "nom" => $inscrit["NOMINSCRIT"], "id" => $inscrit["IDINSCRIT"]));
             return true;
         } else {
             SessionHelpers::logout();
