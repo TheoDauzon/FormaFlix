@@ -30,4 +30,19 @@ class CommentaireModel extends SQL
             return true;
         }
     }
+
+    // Requête supression d'un commentaire
+    function supprimerCommentaire($id) {
+        $stmt = $this->pdo->prepare("DELETE FROM commentaire WHERE id = :idCommentaire");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute([$id]);
+    }
+
+    //requête pour récupérer les commentaires
+    function listeCommentaire($id_utilisateur) {
+        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE  =1 AND id_utilisateur=:id_utilisateur");
+        $stmt->bindParam(':id_utilisateur',$id_utilisateur, \PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

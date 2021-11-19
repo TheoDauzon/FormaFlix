@@ -3,6 +3,7 @@
 namespace routes;
 
 use controllers\Account;
+use controllers\Commentaire;
 use controllers\Formation;
 use controllers\Main;
 use routes\base\Route;
@@ -15,6 +16,7 @@ class Web
         $main = new Main();
         $formation = new Formation();
         $account = new Account();
+        $commentaire = new Commentaire();
 
         Route::Add('/', [$main, 'home']);
         Route::Add('/formations', [$formation, 'home']);
@@ -25,6 +27,8 @@ class Web
 
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
+            Route::Add('/listeCommentaire', [$commentaire, 'listeCommentaire']);
+            Route::Add('/listeCommentaire/supprimer', [$commentaire, 'supprimer']);
             Route::Add('/modifInfos', [$account, 'modifInfos']);
             Route::Add('/modifDiplome', [$account, 'modifDiplome']);
             Route::Add('/modifMdp', [$account, 'modifMdp']);
