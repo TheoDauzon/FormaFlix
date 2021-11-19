@@ -8,7 +8,11 @@
                             <?php
                             if (isset($error) && $error === true) {
                                 ?>
+<<<<<<< HEAD
+                                <div class="alert alert-danger">Erreur dans votre inscription</div>
+=======
                                 <div class="alert alert-danger">Identifiant de connexion invalide</div>
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
                                 <?php
                             }
                             ?>

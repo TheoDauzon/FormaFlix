@@ -1,9 +1,20 @@
 <div class="container">
     <div class="row pt-5">
         <?php
+<<<<<<< HEAD
+            foreach ($formations as $formation) {
+
+                //si la competence selectionnée est égale à ['idformation'] : afficher $formation['image']
+                //if ($selectComp==$formation['IDFORMATION']){
+
+
+                ?>
+
+=======
         foreach ($formations as $formation) {
 
                 ?>
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
                 <div class="col-sm-12 p-3">
                     <div class="card card-hover">
                         <div class="card-body d-flex">

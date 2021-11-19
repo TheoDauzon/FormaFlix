@@ -5,7 +5,10 @@ namespace controllers;
 use controllers\base\Web;
 use models\CompetenceModel;
 use models\FormationModel;
+<<<<<<< HEAD
+=======
 use models\CommentaireModel;
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
 use utils\SessionHelpers;
 
 /**
@@ -16,13 +19,19 @@ class Formation extends Web
 {
     private $formationModel;
     private $competenceModel;
+<<<<<<< HEAD
+=======
     private $commentaireModel;
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
 
     function __construct()
     {
         $this->formationModel = new FormationModel();
         $this->competenceModel = new CompetenceModel();
+<<<<<<< HEAD
+=======
         $this->commentaireModel = new CommentaireModel();
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
     }
 
     // Affichage de la page d'accueil avec en fonction si connecté ou non une liste plus complète.
@@ -72,6 +81,8 @@ class Formation extends Web
         // Compétences associées à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
+<<<<<<< HEAD
+=======
         //commentaires associées à la vidéo
         $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
 
@@ -92,6 +103,7 @@ class Formation extends Web
             }
         }
 
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
         $this->header();
         include("./views/formation/tv.php");
         $this->footer();

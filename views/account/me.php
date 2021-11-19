@@ -6,12 +6,21 @@ use utils\SessionHelpers;
 $account = SessionHelpers::getConnected();
 ?>
 
+<<<<<<< HEAD
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3">
+            <a class="w-100 mt-2 btn btn-lg btn-primary" href="./gestionProfil">Gestion de mon profil</a>
+            <a class="w-100 mt-5 btn btn-lg btn-primary" href="./gestionCommentaire">Gestion des commentaires</a>
+            <a class="w-100 mt-5 btn btn-lg btn-primary" href="./voirCertification">Voir mes certifications</a>
+=======
 
 <div class="container mt-5">
     <div class="row">
         <div class="col-3">
             <a class="w-100 mt-5 btn btn-lg btn-primary" href="./gestionProfil">Gestion de mon profil</a>
             <a class="w-100 mt-5 btn btn-lg btn-primary" href="./gestionCommentaire">Gestion des commentaires</a>
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
             <a class="w-100 mt-5 btn btn-lg btn-danger" href="./logout">Déconnexion</a>
         </div>
         <div class="col-9">
@@ -19,12 +28,20 @@ $account = SessionHelpers::getConnected();
                 <div class="card-body text-center">
                     <img class="m-5" src="<?= Gravatar::get_gravatar($account['email']) ?>"/>
                     <h3 class="text-center pb-2">Bienvenue <?= $account['username'] ?></h3>
+<<<<<<< HEAD
+                    <p>Vous pouvez désormais suivre des formations et tenter de décrocher une certification qui prouve que vous
+=======
                     <p>Vous pouvez désormais suivre des formations et décrocher une certification qui prouve que vous
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
                         l'avez suivi. Vous êtes sur la page de gestion de votre compte, vous pouvez ainsi gérer votre
                         profil en y
                         modifiant certaines coordonnées. Vous pouvez également gérer les commentaires que vous avez
                         publié pour les modifier ou bien les
                         supprimer.</p>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
                 </div>
             </div>
         </div>

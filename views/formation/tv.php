@@ -1,10 +1,14 @@
 <div class="d-flex flex-column align-items-center fit-content m-auto">
     <div class="fit-content">
         <div class="frame">
+<<<<<<< HEAD
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $video['IDENTIFIANTVIDEO']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+=======
             <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $video['IDENTIFIANTVIDEO']; ?>"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
         </div>
         <div class="stand">
             <?= $video['LIBELLE'] ?>
@@ -32,6 +36,14 @@
             }
             ?>
         </div>
+<<<<<<< HEAD
+    </div>
+</div>
+
+
+
+
+=======
 
         <div class="card card-dark mt-5 p-3">
             <form method="POST" action="tv?id=<?= $video['IDENTIFIANTVIDEO']; ?>">
@@ -93,3 +105,4 @@
     </div>
 </div>
 <br>
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb

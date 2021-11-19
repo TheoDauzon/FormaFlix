@@ -25,11 +25,21 @@ class Web
 
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
+<<<<<<< HEAD
+            Route::Add('/modifInfos', [$account, 'modifInfos']);
+            Route::Add('/modifDiplome', [$account, 'modifDiplome']);
+            Route::Add('/modifMdp', [$account, 'modifMdp']);
+            Route::Add('/gestionProfil', [$account, 'gestionProfil']);
+            Route::Add('/gestionCommentaire', [$account, 'gestionCommentaire']);
+            Route::Add('/voirCertification', [$account, 'voirCertification']);
+            Route::Add('/logout', [$account, 'logout']);
+=======
             Route::Add('/gestionProfil', [$account, 'gestionProfil']);
             Route::Add('/gestionCommentaire', [$account, 'gestionCommentaire']);
             Route::Add('/logout', [$account, 'logout']);
             //Route::Add('/tv', [$formation, 'insCommentaire']);
 
+>>>>>>> 9e72c99c69e74e115762d4364d0cad97387252fb
         }
     }
 }
