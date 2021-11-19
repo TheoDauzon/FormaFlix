@@ -1,5 +1,4 @@
 <?php
-
 namespace models;
 
 use models\base\SQL;
@@ -14,12 +13,13 @@ class AccountModel extends SQL
 
     public function login($username, $password)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT=? LIMIT 1");
-        $stmt->execute([$username]);
+        $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT = :mail LIMIT 1");
+        $stmt->bindParam(':mail', $username);
+        $stmt->execute();
         $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if ($inscrit !== false && password_verify($password, $inscrit['MOTPASSEINSCRIT'])) {
-            SessionHelpers::login(array("username" => "{$inscrit["NOMINSCRIT"]} {$inscrit["PRENOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"]));
+            SessionHelpers::login(array("username" => "{$inscrit["PRENOMINSCRIT"]} {$inscrit["NOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"], "prenom" => $inscrit["PRENOMINSCRIT"], "nom" => $inscrit["NOMINSCRIT"], "id" => $inscrit["IDINSCRIT"]));
             return true;
         } else {
             SessionHelpers::logout();

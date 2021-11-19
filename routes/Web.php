@@ -25,6 +25,8 @@ class Web
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
             Route::Add('/logout', [$account, 'logout']);
+            //Route::Add('/tv', [$formation, 'insCommentaire']);
+
         }
     }
 }

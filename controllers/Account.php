@@ -17,7 +17,7 @@ class Account extends Web
         $this->accountModel = new AccountModel();
     }
 
-    // Méthode de connexion. Prise des paramètre en POST
+    // Méthode de connexion. Prise des paramètres en POST
     function login()
     {
         $error = false;
@@ -25,7 +25,7 @@ class Account extends Web
             if ($this->accountModel->login($_POST["login"], $_POST["password"])) {
                 $this->redirect("me");
             } else {
-                // Connexion impossible avec les identifiants fourni.
+                // Connexion impossible avec les identifiants fournis
                 $error = true;
             }
         }
@@ -39,7 +39,7 @@ class Account extends Web
     function logout()
     {
         SessionHelpers::logout();
-        $this->redirect("/login");
+        $this->redirect("./");
     }
 
     // Affiche l'utilisateur actuellement connecté.
