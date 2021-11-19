@@ -34,7 +34,7 @@
         </div>
 
         <div class="card card-dark mt-5 p-3">
-            <form method="POST" action="tv?id=test%20x">
+            <form method="POST" action="tv?id=<?= $video['IDENTIFIANTVIDEO']; ?>">
                 <div class="row g-0 text-light">
                     <h6>EDITER UN COMMENTAIRE</h6>
                     <div class="col-md-1" style="text-align: center;">
@@ -57,15 +57,20 @@
                         <textarea class="form-control" id="contentcomm" name="libcomm" "rows="3"></textarea>
                         <div id="commhelp" class="form-text">Doit contenir au moins 10 caractères</div>
                     </div>
+                    <input type="submit" name="validInsComm" class="btn btn-primary" value="VALIDER">
                 </div>
-                <input type="submit" name="validInsComm" class="btn btn-primary" value="VALIDER">
             </form>
         </div>
 
-        <div class="card card-dark mt-5 p-3">
-            <div class="text-light">COMMENTAIRES</div>
-            <?php
-            foreach ($commentaires as $commentaire) { ?>
+        <br class="card card-dark mt-5 p-3">
+        <div class="text-light">COMMENTAIRES</div>
+        <?php
+        foreach ($commentaires as $commentaire) {
+            if (sizeof($commentaires) == 0) { ?>
+                <p> Il n'y a aucun commentaire de posté sur cette formation.</br>
+                    Il est toutefois possible qu'un commentaire soit en cours de modération. </p>
+            <?php }
+            else { ?>
                 <div class="card card-dark mb-3" style="max-width: 570px;">
                     <div class="row g-0">
                         <div class="col-md-2" style="text-align: center;">
@@ -80,16 +85,11 @@
                                 ?>
                             </div>
                             <br>
-                            <!--<footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>-->
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
+            <?php }
+        } ?>
     </div>
-    <br>
 </div>
-
-
-
-
+<br>
