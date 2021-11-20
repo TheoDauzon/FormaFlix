@@ -32,17 +32,17 @@ class CommentaireModel extends SQL
     }
 
     // Requête supression d'un commentaire
-    function supprimerCommentaire($id) {
-        $stmt = $this->pdo->prepare("DELETE FROM commentaire WHERE id = :idCommentaire");
-        $stmt->bindParam(':id', $id);
-        $stmt->execute([$id]);
+    public function supprimerCommentaire($idCommentaire) {
+        $stmt = $this->pdo->prepare("DELETE FROM commentaire WHERE IDCOMMENTAIRE = :idCommentaire");
+        $stmt->bindParam(':idCommentaire', $idCommentaire);
+        $stmt->execute([$idCommentaire]);
     }
 
     //requête pour récupérer les commentaires
-    function listeCommentaire($id_utilisateur) {
-        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE  =1 AND id_utilisateur=:id_utilisateur");
+    public function listeCommentaire($id_utilisateur) {
+        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE STATUTCOM = 1 AND IDINSCRIT = :id_utilisateur");
         $stmt->bindParam(':id_utilisateur',$id_utilisateur, \PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt->execute([$id_utilisateur]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

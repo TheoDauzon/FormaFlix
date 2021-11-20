@@ -67,4 +67,6 @@ class FormationModel extends SQL
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+
 }

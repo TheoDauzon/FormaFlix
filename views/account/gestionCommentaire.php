@@ -8,23 +8,22 @@
                     foreach ($commentaires as $commentaire) { ?>
                         <li class="list-group-item">
                             <div class="d-flex">
-                                <div class="flex-grow-1 align-self-center"><?= $commentaire['LIBELLE'] ?></div>
                                 <div class="flex-grow-1 align-self-center"><?= $commentaire['LIBELLECOM'] ?></div>
                                 <div class="flex-grow-1 align-self-center"><?= $commentaire['NOTECOM'] ?></div>
                                 <div class="flex-grow-1 align-self-center"><?= $commentaire['DATECOM'] ?></div>
-                                <a href="./modifier?id=<?= $commentaire['id'] ?>" class="btn btn-outline-success">
+                                <!--<a href="./modifier?id=<?= $commentaire['id'] ?>" class="btn btn-outline-success">
                                     <i class="bi bi-pencil-fill"></i>
                                     <a href="./supprimer?id=<?= $commentaire['id'] ?>" class="btn btn-outline-success">
                                         <i class="bi bi-trash"></i>
-                                    </a>
+                                    </a>-->
                                 </a>
                             </div>
                         </li>
                         <?php
                     }
-                    if (sizeof($commentaires) == 0) {
+                    if (sizeof($commentaires) > 0) {
                         ?>
-                        <h3>Vous n'avez pas encore commenter de formations ! Pour découvrir les formations cliquez sur
+                        <h3>Vous n'avez pas encore commenté de formations ! Pour découvrir les formations cliquez sur
                             le
                             bouton
                             ci-dessous :</h3>
