@@ -72,21 +72,23 @@ class Formation extends Web
         // Compétences associées à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
-        //commentaires associées à la vidéo
-        $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
+        if (SessionHelpers::isLogin()) {
+            //commentaires associées à la vidéo
+            $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
 
-        $idForm = $video['IDFORMATION'];
-        $idInscrit = $_SESSION['USER']['id'];
-        $idStatut = 1;
+            $idForm = $video['IDFORMATION'];
+            $idInscrit = $_SESSION['USER']['id'];
+            $idStatut = 1;
 
-        if (isset($_POST['validInsComm'])) {
-            if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
-                $idnote = $_POST['radioCom'];
-                $libcomm = strip_tags($_POST["libcomm"]);
+            if (isset($_POST['validInsComm'])) {
+                if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
+                    $idnote = $_POST['radioCom'];
+                    $libcomm = strip_tags($_POST["libcomm"]);
 
-                if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
-                    $idVideoUrl =$video['IDENTIFIANTVIDEO'];
-                    $this->redirect("tv?id=$idVideoUrl");
+                    if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
+                        $idVideoUrl = $video['IDENTIFIANTVIDEO'];
+                        $this->redirect("tv?id=$idVideoUrl");
+                    }
                 }
             }
         }
