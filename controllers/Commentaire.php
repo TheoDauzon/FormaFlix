@@ -10,6 +10,7 @@ use models\CommentaireModel;
 
 class Commentaire extends Web
 {
+    private $commentaireModel;
 
     public function __construct()
     {
@@ -20,14 +21,9 @@ class Commentaire extends Web
     {
         $this->header();
         $id_utilisateur = $_SESSION['USER']["id"];
-        $commentaires = $this->commentaireModel->listeCommentaire($id_utilisateur); // Récupération des TODOS présents en base.
-
-        include("views/account/gestionCommentaire.php");
-        $this->footer();
-    }
-
-    function modifier(){
-
+        $commentaires = $this->commentaireModel->Commentaire($id_utilisateur); // Récupération des commentaires présents en base.
+        include("views/account/gestionCommentaire.php"); // Affichage de votre vue.
+        $this->footer(); // Affichage de votre pied de page.
     }
 
     // Méthode pour changer l'état d'une tâche

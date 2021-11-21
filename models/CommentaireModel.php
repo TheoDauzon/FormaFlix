@@ -39,10 +39,10 @@ class CommentaireModel extends SQL
     }
 
     //requête pour récupérer les commentaires
-    public function listeCommentaire($id_utilisateur) {
-        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE STATUTCOM = 1 AND IDINSCRIT = :id_utilisateur");
-        $stmt->bindParam(':id_utilisateur',$id_utilisateur, \PDO::PARAM_STR);
-        $stmt->execute([$id_utilisateur]);
+    public function Commentaire($id_utilisateur) {
+        $stmt = $this->pdo->prepare("SELECT NOTECOM, formation.IDFORMATION, LIBELLE, IMAGE, LIBELLECOM, DATE_FORMAT(DATECOM, '%d/%m/%Y') AS DATECOM FROM commentaire INNER JOIN formation ON commentaire.IDFORMATION = formation.IDFORMATION WHERE STATUTCOM = 1 AND IDINSCRIT = :idUtilisateur ORDER BY DATECOM DESC");
+        $stmt->bindParam(':idUtilisateur',$id_utilisateur, \PDO::PARAM_STR);
+        $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
