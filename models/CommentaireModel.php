@@ -34,9 +34,7 @@ class CommentaireModel extends SQL
     // Requête supression d'un commentaire
     public function supprimerCommentaire($idCommentaire) {
         $stmt = $this->pdo->prepare("DELETE FROM commentaire WHERE IDCOMMENTAIRE = :idCommentaire");
-        if ($stmt->execute([$idCommentaire])) {
-            return true;
-        }
+        $stmt->execute([$idCommentaire]);
     }
 
     //requête pour récupérer les commentaires

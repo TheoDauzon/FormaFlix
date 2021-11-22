@@ -14,6 +14,18 @@ $account = SessionHelpers::getConnected();
                 <div class="card">
                     <div class="card-body text-center">
                         <form method="POST" action="./modifInfos">
+                            <?php
+                            if (isset($error) && $error === true) {
+                                ?>
+                                <div class="alert alert-danger">Mot de passe incorrect</div>
+                                <?php
+                            }
+                            if (isset($errorMail) && $errorMail === true) {
+                                ?>
+                                <div class="alert alert-danger">Cette adresse mail est déjà utilisée</div>
+                                <?php
+                            }
+                            ?>
                             <h3 class="text-center pb-2">Modification du nom</h3>
                             <input name="nomModif" type="text" class="form-control" id="floatingInput"
                                    required="required" value="<?= $account["nom"] ?>"><br>

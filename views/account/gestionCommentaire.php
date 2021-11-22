@@ -24,8 +24,8 @@
                             <td><?= $commentaire['LIBELLECOM'] ?></td>
                             <td><?= $commentaire['DATECOM'] ?></td>
                             <td><a href="./tv?id=<?= $commentaire['IDENTIFIANTVIDEO'] ?>" class="btn btn-outline-secondary">
-                                    <i class="bi bi-pencil-fill"></i></a>
-                                <a href="./supprimer?<?= $commentaire['IDCOMMENTAIRE'] ?>" class="btn btn-outline-danger">
+                                    <i class="bi bi-eye-fill"></i></a>
+                                <a href="./supprimer?id=<?= $commentaire['IDCOMMENTAIRE'] ?>" class="btn btn-outline-danger">
                                     <i class="bi bi-trash"></i></a></td>
                         </tr>
                     <?php } ?>

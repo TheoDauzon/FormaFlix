@@ -33,7 +33,7 @@ class Commentaire extends Web
     function supprimer($id = '')
     {
         $this->commentaireModel->supprimerCommentaire($id);
-        var_dump($this->commentaireModel->supprimerCommentaire($id));
+        $this->redirect("./gestionCommentaire");
     }
 
     function tv($id)

@@ -68,24 +68,27 @@ class Account extends Web
 
     function modifInfos()
     {
-        $succes = false;
-        $mauvaisMdp = false;
+        $errorMail = false;
+        $error = false;
         if (isset($_POST['nomModif']) && strlen($_POST['nomModif']) <= 20 && isset($_POST['prenomModif']) && strlen($_POST['prenomModif']) <= 20 && isset($_POST['mailModif']) && filter_var($_POST['mailModif'], FILTER_VALIDATE_EMAIL) && isset($_POST['mdpModif'])) {
             $nomModif = strip_tags($_POST["nomModif"]);
             $prenomModif = strip_tags($_POST["prenomModif"]);
             $mailModif = strip_tags($_POST["mailModif"]);
             $mdpModif = strip_tags($_POST["mdpModif"]);
             $idInscrit = $_SESSION['USER']['id'];
-            if ($this->accountModel->login($mailModif, $mdpModif)) {
-                if ($this->accountModel->modifInfos($nomModif, $prenomModif, $mailModif, $mdpModif, $idInscrit)) {
-                    SessionHelpers::logout();
-                    $this->redirect("login");
-                    $succes = true;
+            if ($this->accountModel->loginVerif($mailModif, $mdpModif)) {
+                if ($this->accountModel->verifMail($mailModif)) {
+                    if ($this->accountModel->modifInfos($nomModif, $prenomModif, $mailModif, $mdpModif, $idInscrit)) {
+                        SessionHelpers::logout();
+                        $this->redirect("login");
+                    }
+                } else {
+                    // Connexion impossible avec les identifiants fourni.
+                    $errorMail = true;
                 }
             } else {
                 // Connexion impossible avec les identifiants fourni.
-                $this->redirect("login");
-                $mauvaisMdp = true;
+                $error = true;
             }
         }
         $this->header();
@@ -95,23 +98,20 @@ class Account extends Web
 
     function modifDiplome()
     {
-        $succes = false;
-        $mauvaisMdp = false;
+        $error = false;
         if (isset($_POST['mdpModifDiplome']) && isset($_POST['filterModifDiplome'])) {
             $mailModif = $_SESSION['USER']['email'];
             $mdpModifDiplome = strip_tags($_POST["mdpModifDiplome"]);
             $diplomeModif = $_POST['filterModifDiplome'];
             $idInscrit = $_SESSION['USER']['id'];
-            if ($this->accountModel->login($mailModif, $mdpModifDiplome)) {
+            if ($this->accountModel->loginVerif($mailModif, $mdpModifDiplome)) {
                 if ($this->accountModel->modifDiplome($mdpModifDiplome, $diplomeModif, $idInscrit)) {
                     SessionHelpers::logout();
                     $this->redirect("login");
-                    $succes = true;
                 }
             } else {
                 // Connexion impossible avec les identifiants fourni.
-                $this->redirect("login");
-                $mauvaisMdp = true;
+                $error = true;
             }
         }
         $this->header();
@@ -121,23 +121,20 @@ class Account extends Web
 
     function modifMdp()
     {
-        $succes = false;
-        $mauvaisMdp = false;
+        $error = false;
         if (isset($_POST['mdpModifMdp']) && isset($_POST['NouvMdp'])) {
             $mailModif = $_SESSION['USER']['email'];
             $mdpModifMdp = strip_tags($_POST['mdpModifMdp']);
             $NouvMdp = strip_tags($_POST['NouvMdp']);
             $idInscrit = $_SESSION['USER']['id'];
-            if ($this->accountModel->login($mailModif, $mdpModifMdp)) {
+            if ($this->accountModel->loginVerif($mailModif, $mdpModifMdp)) {
                 if ($this->accountModel->modifMdp($mdpModifMdp, $NouvMdp, $idInscrit)) {
                     SessionHelpers::logout();
                     $this->redirect("login");
-                    $succes = true;
                 }
             } else {
                 // Connexion impossible avec les identifiants fourni.
-                $this->redirect("login");
-                $mauvaisMdp = true;
+                $error = true;
             }
         }
         $this->header();

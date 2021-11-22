@@ -43,7 +43,7 @@ class FormationModel extends SQL
         // Utilisation d'une query a la place d'un simple getOne car la requête
         // est réalisé sur un champs différent que l'ID de la table.
 
-        $stmt = $this->pdo->prepare("SELECT * FROM formation WHERE IDENTIFIANTVIDEO = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM formation INNER JOIN utilisateur ON formation.IDUTILISATEUR = utilisateur.IDUTILISATEUR WHERE IDENTIFIANTVIDEO = ?");
         $stmt->execute([$videoId]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }

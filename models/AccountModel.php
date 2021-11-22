@@ -27,6 +27,20 @@ class AccountModel extends SQL
         }
     }
 
+    public function loginVerif($username, $password)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT = :mail LIMIT 1");
+        $stmt->bindParam(':mail', $username);
+        $stmt->execute();
+        $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($inscrit !== false && password_verify($password, $inscrit['MOTPASSEINSCRIT'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // Requête qui vérifie que chaque utilisateur est différent (par son mail)
     public function verifMail($mail)
     {
