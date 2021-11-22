@@ -18,11 +18,13 @@ class Formation extends Web
     private $competenceModel;
     private $commentaireModel;
 
+
     function __construct()
     {
         $this->formationModel = new FormationModel();
         $this->competenceModel = new CompetenceModel();
         $this->commentaireModel = new CommentaireModel();
+        $this->utilisateurModel = new UtilisateurModel();
     }
 
     // Affichage de la page d'accueil avec en fonction si connecté ou non une liste plus complète.
