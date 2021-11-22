@@ -43,9 +43,9 @@
                                         <div class="flex-grow-1 align-self-center">
                                             <td><?= $commentaire['DATECOM'] ?></td>
                                         </div>
-                                        <td><a href="./modifier?id=1" class="btn btn-outline-secondary">
+                                        <td><a href="./tv?id=<?= $commentaire['IDENTIFIANTVIDEO'] ?>" class="btn btn-outline-secondary">
                                                 <i class="bi bi-pencil-fill"></i></a></td>
-                                        <td><a href="./supprimer?id=1" class="btn btn-outline-danger">
+                                        <td><a href="./supprimer?<?= $commentaire['IDCOMMENTAIRE'] ?>" class="btn btn-outline-danger">
                                             <i class="bi bi-trash"></i></a></td>
                                     </tr>
                                 </table>

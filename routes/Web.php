@@ -28,7 +28,9 @@ class Web
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
             Route::Add('/gestionCommentaire', [$commentaire, 'listeCommentaire']);
-            Route::Add('/gestionCommentaire/supprimer', [$commentaire, 'supprimer']);
+            Route::Add('/supprimer', [$commentaire, 'supprimer']);
+            Route::Add('/tv', [$commentaire, 'tv']);
+            Route::Add('/modifier', [$commentaire, 'modifier']);
             Route::Add('/modifInfos', [$account, 'modifInfos']);
             Route::Add('/modifDiplome', [$account, 'modifDiplome']);
             Route::Add('/modifMdp', [$account, 'modifMdp']);

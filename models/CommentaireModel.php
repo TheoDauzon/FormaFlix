@@ -34,13 +34,14 @@ class CommentaireModel extends SQL
     // Requête supression d'un commentaire
     public function supprimerCommentaire($idCommentaire) {
         $stmt = $this->pdo->prepare("DELETE FROM commentaire WHERE IDCOMMENTAIRE = :idCommentaire");
-        $stmt->bindParam(':idCommentaire', $idCommentaire);
-        $stmt->execute([$idCommentaire]);
+        if ($stmt->execute([$idCommentaire])) {
+            return true;
+        }
     }
 
     //requête pour récupérer les commentaires
     public function Commentaire($id_utilisateur) {
-        $stmt = $this->pdo->prepare("SELECT NOTECOM, formation.IDFORMATION, LIBELLE, IMAGE, LIBELLECOM, DATE_FORMAT(DATECOM, '%d/%m/%Y') AS DATECOM FROM commentaire INNER JOIN formation ON commentaire.IDFORMATION = formation.IDFORMATION WHERE STATUTCOM = 1 AND IDINSCRIT = :idUtilisateur ORDER BY DATECOM DESC");
+        $stmt = $this->pdo->prepare("SELECT IDCOMMENTAIRE, IDENTIFIANTVIDEO, NOTECOM, formation.IDFORMATION, LIBELLE, IMAGE, LIBELLECOM, DATE_FORMAT(DATECOM, '%d/%m/%Y') AS DATECOM FROM commentaire INNER JOIN formation ON commentaire.IDFORMATION = formation.IDFORMATION WHERE STATUTCOM = 1 AND IDINSCRIT = :idUtilisateur ORDER BY DATECOM DESC");
         $stmt->bindParam(':idUtilisateur',$id_utilisateur, \PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
