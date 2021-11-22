@@ -33,7 +33,7 @@
             }
             ?>
             <hr class="dropdown-divider">
-            <p class="text-light">Auteur de la formation : <?= $auteur ?></p>
+            <p class="text-light">Auteur de la formation : <?= $auteur['NOM'] ?></p>
         </div>
 
         <?php

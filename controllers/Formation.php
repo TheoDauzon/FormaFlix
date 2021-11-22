@@ -24,7 +24,6 @@ class Formation extends Web
         $this->formationModel = new FormationModel();
         $this->competenceModel = new CompetenceModel();
         $this->commentaireModel = new CommentaireModel();
-        $this->utilisateurModel = new UtilisateurModel();
     }
 
     // Affichage de la page d'accueil avec en fonction si connecté ou non une liste plus complète.
@@ -74,6 +73,7 @@ class Formation extends Web
         // Compétences associées à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
+        var_dump($video);
         //auteur associé à la vidéo
         $auteur = $this->formationModel->auteurFormation($video["IDFORMATION"]);
 
