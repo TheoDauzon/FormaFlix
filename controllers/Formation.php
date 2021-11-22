@@ -72,19 +72,27 @@ class Formation extends Web
         // Compétences associées à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
+        //auteur associé à la vidéo
+        $auteur = $this->formationModel->auteurFormation($video["IDFORMATION"]);
+
+        //insertion et affichage commentaire si l'ut est connecté
         if (SessionHelpers::isLogin()) {
             //commentaires associées à la vidéo
             $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
 
+            //récupération des données à insérer
             $idForm = $video['IDFORMATION'];
             $idInscrit = $_SESSION['USER']['id'];
             $idStatut = 1;
 
+            //vérification que tous les champs sont remplis
             if (isset($_POST['validInsComm'])) {
                 if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
+                    //récupération données rentrées par l'ut
                     $idnote = $_POST['radioCom'];
                     $libcomm = strip_tags($_POST["libcomm"]);
 
+                    //si l'insertion se fait bien -> actualisation de la page formation avec l'affichage du comm
                     if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
                         $idVideoUrl = $video['IDENTIFIANTVIDEO'];
                         $this->redirect("tv?id=$idVideoUrl");
