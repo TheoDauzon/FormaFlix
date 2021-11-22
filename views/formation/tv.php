@@ -42,7 +42,7 @@
         <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
             <form method="POST" action="tv?id=<?= $video['IDENTIFIANTVIDEO']; ?>">
                 <div class="row g-0">
-                    <h5 style="text-align: center" class="text-light">--- EDITER UN COMMENTAIRE --- </h5>
+                    <h5 style="text-align: center" class="text-light">--- EDITER UN COMMENTAIRE ---</h5>
                     <hr class="dropdown-divider">
                     <div class="col-md-1 text-light" style=" margin-bottom: 10px;">
 
@@ -71,7 +71,9 @@
         </div>
 
         <div class="card card-dark mt-5 p-3">
-            <div class="text-light" style="margin-bottom: 13px; text-align: center; font-size: 20px">--- COMMENTAIRES ---</div>
+            <div class="text-light" style="margin-bottom: 13px; text-align: center; font-size: 20px">--- COMMENTAIRES
+                ---
+            </div>
             <hr class="dropdown-divider ">
             <?php
             if (sizeof($commentaires) == 0) { ?>
@@ -82,9 +84,10 @@
                     <div class="card card-dark mb-3" style=" margin-left: 13px; margin-right: 13PX;">
                         <div class="row g-0">
                             <div class="col-md-2" style="text-align: center; font-size:42px;">
-                                <p class="text-light"> <?php
+                                <p class="text-light" style="text-shadow: 2px 2px 4px #dc3545;"> <?php
                                     echo $commentaire["NOTECOM"];
-                                    ?> </p>
+                                    ?>
+                                    <i class="bi bi-star" style="font-size: 25px; text-shadow: 2px 2px 4px #dc3545;"></i></p>
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body fst-italic text-light">
