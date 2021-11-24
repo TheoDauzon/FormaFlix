@@ -54,4 +54,11 @@ class FormationModel extends SQL
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    function getQuestionById($videoId)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM formation WHERE IDENTIFIANTVIDEO = ?");
+        $stmt->execute([$videoId]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }

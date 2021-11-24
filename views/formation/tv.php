@@ -47,12 +47,14 @@
                     Vous pourrez générer un pdf de la certification si vous répondez correctement à la question ci-dessous.</p>
                 <hr class="dropdown-divider">
                 <div>
-                    <p class="text-light question"><?= $video['QUESTION'] ;?></p><br>
+                    <p class="text-light question"><?= $questionCertif['QUESTION'] ; echo $questionCertif?></p><br>
                     <label for="reponse" class="form-label text-light">Réponse</label>
                     <textarea class="form-control" id="reponse" name="reponse" "rows="1" style="height: 20px; width : 500px"></textarea>
+                    <input type="submit" name="validInsComm" class="btn btn-primary" value="VALIDER">
                 </div>
             </div>
         </div>
+
 
 
         <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
@@ -81,7 +83,7 @@
                         "></textarea>
                         <div id="commhelp" class="form-text">Doit contenir au moins 5 caractères</div>
                     </div>
-                    <input type="submit" name="validInsComm" class="btn btn-primary" value="VALIDER">
+                    <input type="submit" name="validInsComm" class="btn btn-primary" value="ENVOYER">
                 </div>
             </form>
         </div>

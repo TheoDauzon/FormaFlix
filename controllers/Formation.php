@@ -69,14 +69,15 @@ class Formation extends Web
         if ($video['VISIBILITEPUBLIC'] == 0 && !SessionHelpers::isLogin()) {
             $this->redirect("./formations");
         }
-
         // Compétences associées à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
-        //insertion et affichage commentaire si l'ut est connecté
+        //si l'ut est connecté : insertion et affichage commentaire + question
         if (SessionHelpers::isLogin()) {
             //commentaires associées à la vidéo
             $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
+
+            $questionCertif = $video;
 
             //récupération des données à insérer
             $idForm = $video['IDFORMATION'];
