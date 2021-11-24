@@ -40,6 +40,22 @@
         if (\utils\SessionHelpers::isLogin()) {
         ?>
         <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
+            <div class="row g-0">
+                <h5 style="text-align: center" class="text-light">--- FORMATION CERTIFIABLE ---</h5>
+                <hr class="dropdown-divider ">
+                <p class="text-light"style="text-align: center">Cette formation est certifiable.<br>
+                    Vous pourrez générer un pdf de la certification si vous répondez correctement à la question ci-dessous.</p>
+                <hr class="dropdown-divider">
+                <div>
+                    <p class="text-light question"><?= $video['QUESTION'] ;?></p><br>
+                    <label for="reponse" class="form-label text-light">Réponse</label>
+                    <textarea class="form-control" id="reponse" name="reponse" "rows="1" style="height: 20px; width : 500px"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
             <form method="POST" action="tv?id=<?= $video['IDENTIFIANTVIDEO']; ?>">
                 <div class="row g-0">
                     <h5 style="text-align: center" class="text-light">--- EDITER UN COMMENTAIRE ---</h5>
@@ -87,7 +103,8 @@
                                 <p class="text-light" style="text-shadow: 2px 2px 4px #dc3545;"> <?php
                                     echo $commentaire["NOTECOM"];
                                     ?>
-                                    <i class="bi bi-star" style="font-size: 25px; text-shadow: 2px 2px 4px #dc3545;"></i></p>
+                                    <i class="bi bi-star"
+                                       style="font-size: 25px; text-shadow: 2px 2px 4px #dc3545;"></i></p>
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body fst-italic text-light">

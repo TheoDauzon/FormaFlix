@@ -73,10 +73,6 @@ class Formation extends Web
         // Compétences associées à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
 
-        // Auteur associé à la vidéo
-        //$auteur = $this->formationModel->auteurFormation($video["IDFORMATION"]);
-        //var_dump($auteur);
-
         //insertion et affichage commentaire si l'ut est connecté
         if (SessionHelpers::isLogin()) {
             //commentaires associées à la vidéo

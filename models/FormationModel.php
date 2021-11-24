@@ -54,11 +54,4 @@ class FormationModel extends SQL
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-    public function auteurFormation($id)
-    {
-        $stmt = $this->pdo->prepare("SELECT * FROM utilisateur LEFT JOIN formation f on utilisateur.IDUTILISATEUR = f.IDUTILISATEUR WHERE f.IDFORMATION = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
 }
