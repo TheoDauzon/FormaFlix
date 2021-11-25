@@ -152,6 +152,10 @@ class Account extends Web
 
     function voirCertification()
     {
+        $idInscrit = $_SESSION['USER']['id'];
+        $certifications = $this->accountModel->getCertifByIdUt($idInscrit);
+        var_dump($certifications);
+
         $this->header();
         include("views/account/voirCertification.php");
         $this->footer();

@@ -4,34 +4,14 @@
             <div class="card-body text-center">
                 <h1 class="text-center pb-3">Mes certifications</h1>
 
-                <p>test generer pdf</p>
                 <?php
                 foreach ($certifications as $certification) {?>
                 <li class="list-group-item">
                     <div class="d-flex">
                         <div class="flex-grow-1 align-self-center"><?= $certification['texte'] ?></div>
-                        <div>
-                            <?php
-                            if ($certification['termine'] == 0) {
-                                ?>
-                                <a href="./terminer?id=<?= $certification['id'] ?>" class="btn btn-outline-success">
-                                    <i class="bi bi-check"></i>
-                                </a>
-                                <?php
-                            } else {
-                                ?>
-                                <a href="./supprimer?id=<?= $certification['id'] ?>" class="btn btn-outline-danger">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                                <?php
-                            }
-                            ?>
-                        </div>
                     </div>
                 </li>
-                <?php
-                }
-
+                <?php }
 
                 if (sizeof($certifications) == 0) {
                 ?>

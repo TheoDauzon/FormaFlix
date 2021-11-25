@@ -49,7 +49,7 @@
                     <div class="row g-0">
                         <h5 style="text-align: center" class="text-light">--- FORMATION CERTIFIABLE ---</h5>
                         <hr class="dropdown-divider ">
-                        <p class="text-light" style="text-align: center">Cette formation est certifiable.<br>
+                        <p class="text-light" style="text-align: center">
                             Vous pourrez générer un pdf de la certification si vous répondez correctement à la question
                             ci-dessous.</p>
                         <hr class="dropdown-divider">
@@ -57,7 +57,7 @@
                             <p class="text-light question"
                                style="text-align: center"><?= $questionCertif['QUESTION'] ?></p>
                             <br>
-                            <label for="reponse" class="form-label text-light">Réponse</label>
+                            <label for="reponse" class="form-label text-light">Réponse :</label>
                             <input class="form-control" id="reponse" name="reponse"><br>
                             <input type="submit" name="validReponse" class="btn btn-primary" value="VALIDER">
                         </div>
