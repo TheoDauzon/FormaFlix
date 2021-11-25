@@ -43,7 +43,7 @@
         if ($questionCertif['QUESTION'] !== "NULL" || $questionCertif['QUESTION'] !== "") {
         ?>
         <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
-            <form method="POST" action="voirCertification">
+            <form method="POST" action="tv?id=<?= $video['IDENTIFIANTVIDEO']; ?>">
                 <div class="row g-0">
 
                     <h5 style="text-align: center" class="text-light">--- FORMATION CERTIFIABLE ---</h5>

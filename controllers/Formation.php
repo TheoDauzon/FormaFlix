@@ -79,46 +79,45 @@ class Formation extends Web
 
             $questionCertif = $this->formationModel->getQuestionById($id);
 
-            //récupération des données à insérer
-            $idForm = $video['IDFORMATION'];
-            $idInscrit = $_SESSION['USER']['id'];
-            $idStatut = 0;
-
-            //vérification que tous les champs sont remplis
-            if (isset($_POST['validInsComm'])) {
-                if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
-                    //récupération données rentrées par l'ut
-                    $idnote = $_POST['radioCom'];
-                    $libcomm = strip_tags($_POST["libcomm"]);
-
-                    //si l'insertion se fait bien -> actualisation de la page formation avec l'affichage du comm
-                    if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
+            if (isset($_POST['validReponse'])) {
+                if (isset($_POST['reponse'])) {
+                    //récupération données de réponse rentrées par l'utilisateur
+                    $reponse = strip_tags($_POST["reponse"]);
+                    $idForm = $video['IDFORMATION'];
+                    //vérification des réponses
+                    if ($this->formationModel->verifReponse($idForm, $reponse)) {
+                        $this->redirect("voirCertification");
+                    } else {
                         $idVideoUrl = $video['IDENTIFIANTVIDEO'];
                         $this->redirect("tv?id=$idVideoUrl");
                     }
                 }
-            }
-        }
 
-        $this->header();
-        include("./views/formation/tv.php");
-        $this->footer();
-    }
+                //récupération des données à insérer
+                $idForm = $video['IDFORMATION'];
+                $idInscrit = $_SESSION['USER']['id'];
+                $idStatut = 0;
 
-    function verifReponse($id){
-        $video = $this->formationModel->getByVideoId($id);
-        if (isset($_POST['reponse'])) {
-            //récupération données de réponse rentrées par l'utilisateur
-            $reponse = strip_tags($_POST["reponse"]);
-            $idForm = $video['IDFORMATION'];
-            //vérification des réponses
-            if ($this->formationModel->verifReponse($idForm, $reponse)) {
-                $this->redirect("voirCertification");
-            } else {
-                $this->redirect("voirCertification");
+                //vérification que tous les champs sont remplis
+                if (isset($_POST['validInsComm'])) {
+                    if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
+                        //récupération données rentrées par l'ut
+                        $idnote = $_POST['radioCom'];
+                        $libcomm = strip_tags($_POST["libcomm"]);
+
+                        //si l'insertion se fait bien -> actualisation de la page formation avec l'affichage du comm
+                        if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
+                            $idVideoUrl = $video['IDENTIFIANTVIDEO'];
+                            $this->redirect("tv?id=$idVideoUrl");
+                        }
+                    }
+                }
             }
+
+            $this->header();
+            include("./views/formation/tv.php");
+            $this->footer();
         }
     }
 }
-
 

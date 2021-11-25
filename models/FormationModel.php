@@ -70,4 +70,14 @@ class FormationModel extends SQL
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    function insertionCertification($idForm)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO certification VALUES (NULL, :idForm)");
+        $stmt->bindParam(':idForm', $idForm);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+    }
 }
