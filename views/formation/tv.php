@@ -39,7 +39,16 @@
         <?php
         if (\utils\SessionHelpers::isLogin()) {
         if ($questionCertif['QUESTION'] == NULL) { ?>
-
+            <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
+                    <div class="row g-0">
+                        <h5 style="text-align: center" class="text-light">--- FORMATION NON CERTIFIABLE ---</h5>
+                        <hr class="dropdown-divider ">
+                        <p class="text-light" style="text-align: center">
+                            Cette formation n'est pas certifiable.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         <?php }
         else {
             ?>

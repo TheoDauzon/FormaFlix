@@ -37,7 +37,7 @@ class Web
             Route::Add('/modifDiplome', [$account, 'modifDiplome']);
             Route::Add('/modifMdp', [$account, 'modifMdp']);
             Route::Add('/gestionProfil', [$account, 'gestionProfil']);
-            Route::Add('/voirCertification', [$account, 'voirCertification']);
+            Route::Add('/voirCertification', [$commentaire, 'listeCertification']);
             Route::Add('/logout', [$account, 'logout']);
 
         }

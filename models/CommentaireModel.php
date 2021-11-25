@@ -44,4 +44,12 @@ class CommentaireModel extends SQL
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function Certification($id_utilisateur) {
+        //$stmt = $this->pdo->prepare("SELECT GROUP_CONCAT(LIBELLECOMPETENCE) AS LIBELLECOMPETENCE, formation.LIBELLE, formation.IMAGE, utilisateur.NOM, utilisateur.PRENOM, DATE_FORMAT(DATEOBTENTION, '%d/%m/%Y') AS DATEOBTENTION FROM dateobtentioncertif INNER JOIN certification ON dateobtentioncertif.IDCERTIFICATION = certification.IDCERTIFICATION INNER JOIN formation ON certification.IDFORMATION = formation.IDFORMATION INNER JOIN developper ON formation.IDFORMATION = developper.IDFORMATION INNER JOIN competence ON developper.IDCOMPETENCE = competence.IDCOMPETENCE INNER JOIN utilisateur ON formation.IDUTILISATEUR = utilisateur.IDUTILISATEUR WHERE IDINSCRIT = :idUtilisateur ORDER BY DATEOBTENTION DESC");
+        $stmt = $this->pdo->prepare("SELECT LIBELLECOMPETENCE, formation.LIBELLE, formation.IMAGE, utilisateur.NOM, utilisateur.PRENOM, DATE_FORMAT(DATEOBTENTION, '%d/%m/%Y') AS DATEOBTENTION FROM dateobtentioncertif INNER JOIN certification ON dateobtentioncertif.IDCERTIFICATION = certification.IDCERTIFICATION INNER JOIN formation ON certification.IDFORMATION = formation.IDFORMATION INNER JOIN developper ON formation.IDFORMATION = developper.IDFORMATION INNER JOIN competence ON developper.IDCOMPETENCE = competence.IDCOMPETENCE INNER JOIN utilisateur ON formation.IDUTILISATEUR = utilisateur.IDUTILISATEUR WHERE IDINSCRIT = :idUtilisateur ORDER BY DATEOBTENTION DESC");
+        $stmt->bindParam(':idUtilisateur',$id_utilisateur, \PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -30,6 +30,15 @@ class Commentaire extends Web
         $this->footer(); // Affichage de votre pied de page.
     }
 
+    function listeCertification()
+    {
+        $this->header();
+        $id_utilisateur = $_SESSION['USER']["id"];
+        $certifications = $this->commentaireModel->Certification($id_utilisateur); // Récupération des commentaires présents en base.
+        include("views/account/voirCertification.php"); // Affichage de votre vue.
+        $this->footer(); // Affichage de votre pied de page.
+    }
+
     function supprimer($id = '')
     {
         $this->commentaireModel->supprimerCommentaire($id);
