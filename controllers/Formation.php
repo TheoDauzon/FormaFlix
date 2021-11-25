@@ -91,7 +91,13 @@ class Formation extends Web
                             $idCertif = $this->formationModel->getCertificationById($idForm);
                             if ($this->formationModel->dateObtentionCertification($idCertif['IDCERTIFICATION'], $idInscrit)) {
                                 $this->redirect("voirCertification");
+                            } else {
+                                $idVideoUrl = $video['IDENTIFIANTVIDEO'];
+                                $this->redirect("tv?id=$idVideoUrl");
                             }
+                        } else {
+                            $idVideoUrl = $video['IDENTIFIANTVIDEO'];
+                            $this->redirect("tv?id=$idVideoUrl");
                         }
                     } else {
                         $idVideoUrl = $video['IDENTIFIANTVIDEO'];
