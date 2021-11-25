@@ -104,31 +104,32 @@ class Formation extends Web
                         $this->redirect("tv?id=$idVideoUrl");
                     }
                 }
+            }
 
-                //récupération des données à insérer
-                $idForm = $video['IDFORMATION'];
-                $idInscrit = $_SESSION['USER']['id'];
-                $idStatut = 0;
+            //récupération des données à insérer
+            $idForm = $video['IDFORMATION'];
+            $idInscrit = $_SESSION['USER']['id'];
+            $idStatut = 0;
 
-                //vérification que tous les champs sont remplis
-                if (isset($_POST['validInsComm'])) {
-                    if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
-                        //récupération données rentrées par l'ut
-                        $idnote = $_POST['radioCom'];
-                        $libcomm = strip_tags($_POST["libcomm"]);
-                        //si l'insertion se fait bien -> actualisation de la page formation avec l'affichage du comm
-                        if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
-                            $idVideoUrl = $video['IDENTIFIANTVIDEO'];
-                            $this->redirect("tv?id=$idVideoUrl");
-                        }
+            //vérification que tous les champs sont remplis
+            if (isset($_POST['validInsComm'])) {
+                if (isset($_POST['libcomm']) && isset($_POST['radioCom'])) {
+                    //récupération données rentrées par l'ut
+                    $idnote = $_POST['radioCom'];
+                    $libcomm = strip_tags($_POST["libcomm"]);
+                    //si l'insertion se fait bien -> actualisation de la page formation avec l'affichage du comm
+                    if ($this->commentaireModel->insCommentaire($libcomm, $idnote, $idStatut, $idForm, $idInscrit)) {
+                        $idVideoUrl = $video['IDENTIFIANTVIDEO'];
+                        $this->redirect("tv?id=$idVideoUrl");
                     }
                 }
             }
+        }
 
             $this->header();
             include("./views/formation/tv.php");
             $this->footer();
-        }
+
     }
 }
 

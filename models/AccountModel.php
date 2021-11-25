@@ -116,4 +116,11 @@ class AccountModel extends SQL
             return true;
         }
     }
+    public function certif($id_utilisateur)
+    {
+        $stmt = $this -> pdo -> prepare ("SELECT formation.IDFORMATION, formation.LIBELLE, certification.IDCERTIFICATION, dateobtentioncertif.IDINSCRIT, DATE_FORMAT(DATEOBTENTION, '%d/%m/%y') AS DATEOBTENTION FROM formation INNER JOIN certification ON formation.IDFORMATION=certification.IDCERTIFICATION INNER JOIN dateobtentioncertif ON certification.IDCERTIFICATION=dateobtentioncertif.IDCERTIFICATION WHERE IDINSCRIT = :idUtilisateur ORDER BY DATEOBTENTION DESC");
+        $stmt->bindParam(':idUtilisateur',$id_utilisateur, \PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

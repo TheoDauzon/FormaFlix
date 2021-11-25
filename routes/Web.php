@@ -31,7 +31,7 @@ class Web
             Route::Add('/supprimer', [$commentaire, 'supprimer']);
             Route::Add('/tv', [$commentaire, 'tv']);
             Route::Add('/tv', [$formation, 'tv']);
-            Route::Add('/verifReponse', [$formation, 'verifRseponse']);
+            //Route::Add('/tv', [$formation, 'tv']);
             Route::Add('/modifier', [$commentaire, 'modifier']);
             Route::Add('/modifInfos', [$account, 'modifInfos']);
             Route::Add('/modifDiplome', [$account, 'modifDiplome']);
