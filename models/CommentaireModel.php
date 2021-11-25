@@ -11,7 +11,7 @@ class CommentaireModel extends SQL
     }
 
     public function getCommentaireById($id){
-        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idformation = ? AND STATUTCOM = 1");
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }

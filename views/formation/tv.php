@@ -11,7 +11,7 @@
 
         </div>
     </div>
-    <div class="w-100">
+    <div class="w-100" style="max-width: 1000px">
 
         <div class="card card-dark mt-5 p-3">
             <div class="text-light"><?= $video['DESCRIPTION'] ?></div>
@@ -39,22 +39,41 @@
         <?php
         if (\utils\SessionHelpers::isLogin()) {
         ?>
+        <?php
+        if ($questionCertif['QUESTION'] !== "NULL" || $questionCertif['QUESTION'] !== "") {
+        ?>
         <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
-            <div class="row g-0">
-                <h5 style="text-align: center" class="text-light">--- FORMATION CERTIFIABLE ---</h5>
-                <hr class="dropdown-divider ">
-                <p class="text-light"style="text-align: center">Cette formation est certifiable.<br>
-                    Vous pourrez générer un pdf de la certification si vous répondez correctement à la question ci-dessous.</p>
-                <hr class="dropdown-divider">
-                <div>
-                    <p class="text-light question"><?= $questionCertif['QUESTION']?></p><br>
-                    <label for="reponse" class="form-label text-light">Réponse</label>
-                    <textarea class="form-control" id="reponse" name="reponse" "rows="1" style="height: 20px; width : 500px"></textarea>
-                    <input type="submit" name="validInsComm" class="btn btn-primary" value="VALIDER">
-                </div>
-            </div>
-        </div>
+            <form method="POST" action="voirCertification">
+                <div class="row g-0">
 
+                    <h5 style="text-align: center" class="text-light">--- FORMATION CERTIFIABLE ---</h5>
+                    <hr class="dropdown-divider ">
+                    <p class="text-light" style="text-align: center">Cette formation est certifiable.<br>
+                        Vous pourrez générer un pdf de la certification si vous répondez correctement à la question
+                        ci-dessous.</p>
+                    <hr class="dropdown-divider">
+                    <div style="text-align: center">
+                        <p class="text-light question" style="text-align: center"><?= $questionCertif['QUESTION'] ?></p>
+                        <br>
+                        <label for="reponse" class="form-label text-light">Réponse</label>
+                        <input class="form-control" id="reponse" name="reponse"><br>
+                        <input type="submit" name="validReponse" class="btn btn-primary" value="VALIDER">
+                    </div>
+                    <?php
+                    }
+                    else {
+                    ?>
+                    <h5 style="text-align: center" class="text-light">--- FORMATION NON CERTIFIABLE ---</h5>
+                    <hr class="dropdown-divider ">
+                    <p class="text-light" style="text-align: center">Cette formation est certifiable.<br>
+                        Vous pourrez générer un pdf de la certification si vous répondez correctement à la question
+                        ci-dessous.</p>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </form>
+        </div>
 
 
         <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">

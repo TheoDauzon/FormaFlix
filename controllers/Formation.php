@@ -78,12 +78,11 @@ class Formation extends Web
             $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
 
             $questionCertif = $this->formationModel->getQuestionById($id);
-            //$questionCertif = $video;
 
             //récupération des données à insérer
             $idForm = $video['IDFORMATION'];
             $idInscrit = $_SESSION['USER']['id'];
-            $idStatut = 1;
+            $idStatut = 0;
 
             //vérification que tous les champs sont remplis
             if (isset($_POST['validInsComm'])) {
@@ -105,4 +104,21 @@ class Formation extends Web
         include("./views/formation/tv.php");
         $this->footer();
     }
+
+    function verifReponse($id){
+        $video = $this->formationModel->getByVideoId($id);
+        if (isset($_POST['reponse'])) {
+            //récupération données de réponse rentrées par l'utilisateur
+            $reponse = strip_tags($_POST["reponse"]);
+            $idForm = $video['IDFORMATION'];
+            //vérification des réponses
+            if ($this->formationModel->verifReponse($idForm, $reponse)) {
+                $this->redirect("voirCertification");
+            } else {
+                $this->redirect("voirCertification");
+            }
+        }
+    }
 }
+
+

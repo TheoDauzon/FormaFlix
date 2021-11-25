@@ -61,4 +61,13 @@ class FormationModel extends SQL
         $stmt->execute([$videoId]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    function verifReponse($idForm, $reponse)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM formation WHERE IDFORMATION = :idForm AND REPONSE = :reponse");
+        $stmt->bindParam(':idForm', $idForm);
+        $stmt->bindParam(':reponse', $reponse);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
