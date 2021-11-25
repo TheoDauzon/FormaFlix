@@ -30,6 +30,8 @@ class Web
             Route::Add('/gestionCommentaire', [$commentaire, 'listeCommentaire']);
             Route::Add('/supprimer', [$commentaire, 'supprimer']);
             Route::Add('/tv', [$commentaire, 'tv']);
+            Route::Add('/tv', [$formation, 'tv']);
+
             Route::Add('/modifier', [$commentaire, 'modifier']);
             Route::Add('/modifInfos', [$account, 'modifInfos']);
             Route::Add('/modifDiplome', [$account, 'modifDiplome']);

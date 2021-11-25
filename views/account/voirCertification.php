@@ -3,6 +3,8 @@
         <div class="card">
             <div class="card-body text-center">
                 <h1 class="text-center pb-3">Mes certifications</h1>
+
+                <p>test generer pdf</p>
                 <?php
                 foreach ($certifications as $certification) {?>
                 <li class="list-group-item">

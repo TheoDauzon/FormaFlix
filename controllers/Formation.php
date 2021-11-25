@@ -77,7 +77,8 @@ class Formation extends Web
             //commentaires associées à la vidéo
             $commentaires = $this->commentaireModel->getCommentaireById($video["IDFORMATION"]);
 
-            $questionCertif = $video;
+            $questionCertif = $this->formationModel->getQuestionById($id);
+            //$questionCertif = $video;
 
             //récupération des données à insérer
             $idForm = $video['IDFORMATION'];
