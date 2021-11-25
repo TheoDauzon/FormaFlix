@@ -80,4 +80,21 @@ class FormationModel extends SQL
             return true;
         }
     }
+
+    function getCertificationById($idForm)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM certification WHERE IDFORMATION = ?");
+        $stmt->execute([$idForm]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    function dateObtentionCertification($idCertif, $idInscrit)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO dateobtentioncertif VALUES (:idCertif, :idInscrit, CURRENT_DATE)");
+        $stmt->bindParam(':idCertif', $idCertif);
+        $stmt->bindParam(':idInscrit', $idInscrit);
+        if ($stmt->execute()) {
+            return true;
+        }
+    }
 }
