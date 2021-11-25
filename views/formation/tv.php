@@ -38,6 +38,7 @@
 
         <?php
         if (\utils\SessionHelpers::isLogin()) {
+        if ($questionCertif['QUESTION'] !== "NULL" || $questionCertif['QUESTION'] !== "") {
         ?>
         <div class="card card-dark mt-5 p-3" style="margin-bottom: -26px">
             <form method="POST" action="tv?id=<?= $video['IDENTIFIANTVIDEO']; ?>">
@@ -55,11 +56,18 @@
                         <input class="form-control" id="reponse" name="reponse"><br>
                         <input type="submit" name="validReponse" class="btn btn-primary" value="VALIDER">
                     </div>
+                    ?>
+                    <?php
+                    } else {
+                    ?>
                     <h5 style="text-align: center" class="text-light">--- FORMATION NON CERTIFIABLE ---</h5>
                     <hr class="dropdown-divider ">
                     <p class="text-light" style="text-align: center">Cette formation est certifiable.<br>
                         Vous pourrez générer un pdf de la certification si vous répondez correctement à la question
                         ci-dessous.</p>
+                        <?php
+                    }
+                    ?>
                 </div>
             </form>
         </div>
